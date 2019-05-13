@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angular PDF Viewer demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="assets/pdf/pdf.js"></script>
+    <script src="assets/pdf/text_layer_builder.js"></script>
+    <script src="assets/pdf/annotations_layer_builder.js"></script>
+    <script src="assets/pdf/ui_utils.js"></script>
+
+
+    <script src="bundles.js"></script>
+
+</head>
+
+<body data-ng-app="app" data-ng-controller="mainCtrl">
+
+<div id="toolbar">
+
+    <div class="search_wrapper">
+        <form data-ng-submit="findNext()" style="display: inline-block;">
+            <input type="text" data-ng-model="pdfSearchTerm" placeholder="Search..."/>
+        </form>
+        <span data-ng-show="pdfSearchTerm !== ''">{{pdfSearchResultID}} of {{pdfSearchNumOccurrences}}</span>
+        <button data-ng-click="findPrev()">&lt;</button>
+        <button data-ng-click="findNext()">&gt;</button>
+    </div>
+</div>
+
+<pdf-viewer
+        data-src="assets/temp.pdf"
+        data-api="pdfViewerAPI"
+        data-search-term="{{pdfSearchTerm}}"
+        data-search-result-id="pdfSearchResultID"
+        data-search-num-occurences="pdfSearchNumOccurrences">
+</pdf-viewer>
+
+
+</body>
+</html>
